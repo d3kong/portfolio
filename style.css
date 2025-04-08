@@ -3,4 +3,52 @@ body {
          and use the OS’s UI font as the website font
        */
     font: 100%/1.5 system-ui;
+    max-width: 100ch;
+    margin-inline: auto;
+    padding-inline: 1em;
   }
+nav {
+  display: flex;
+  justify-content: space-evenly;
+  border-bottom: 1px solid oklch(80% 3% 200);
+  margin-bottom: 1rem;
+}
+nav a {
+  text-decoration: none;
+  color: cadetblue;
+  text-align: center;
+  padding: 0.5em;
+}
+
+nav a:hover {
+  border-bottom: 0.4em solid var(--color-accent);
+}
+
+/* Accent color setup */
+:root {
+  --color-accent: oklch(65% 50% 0);
+}
+
+html {
+  accent-color: var(--color-accent);
+}
+
+/* Contact form styling */
+form {
+  font: inherit;
+  display: block;
+  max-width: 500px;
+  margin: 2rem auto; 
+}
+
+form label {
+  display: block;
+  margin-block: 1rem;
+}
+
+form input, form textarea, form button {
+  display: block;
+  width: 100%;
+  padding: 0.5em;
+  box-sizing: border-box;
+}
