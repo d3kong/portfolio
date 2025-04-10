@@ -78,3 +78,31 @@ form input, form textarea, form button {
   margin: 0 0 0.5em;
   font-size: 1.2rem;
 }
+
+.resume {
+  max-width: 60ch;
+  margin: 2em auto;
+  line-height: 1.6;
+  font-size: 1rem;
+  padding: 0 1em;
+}
+
+.resume h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5em;
+  text-align: center;
+}
+
+.resume a {
+  display: inline-block;
+  margin-top: 1em;
+  padding: 0.5em 1em;
+  background-color: var(--color-accent);
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.resume a:hover {
+  opacity: 0.85;
+}
