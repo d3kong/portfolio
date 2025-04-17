@@ -1,3 +1,16 @@
+/* Accent color setup */
+:root {
+  --color-accent: coral;
+  --color-bg: white;
+  --color-text: black;
+}
+
+[data-theme="dark"] {
+  --color-bg: #121212;
+  --color-text: hotpink;
+  --color-accent: rgb(46, 185, 46);
+}
+
 body {
     /* Set line height to 1.5 times the font size
          and use the OS’s UI font as the website font
@@ -30,19 +43,6 @@ nav a:hover {
 nav a[aria-current="page"] {
   font-weight: bold;
   color: var(--color-accent);
-}
-
-/* Accent color setup */
-:root {
-  --color-accent: coral;
-  --color-bg: white;
-  --color-text: black;
-}
-
-[data-theme="dark"] {
-  --color-bg: #121212;
-  --color-text: hotpink;
-  --color-accent: rgb(46, 185, 46);
 }
 
 html {
