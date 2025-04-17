@@ -52,3 +52,57 @@ form input, form textarea, form button {
   padding: 0.5em;
   box-sizing: border-box;
 }
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  gap: 1em;
+  margin-top: 2em;
+}
+
+.projects article {
+  background-color: #00ffd9;
+  padding: 1em;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.projects img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 1em;
+}
+
+.projects h2 {
+  margin: 0 0 0.5em;
+  font-size: 1.2rem;
+}
+
+.resume {
+  max-width: 60ch;
+  margin: 2em auto;
+  line-height: 1.6;
+  font-size: 1rem;
+  padding: 0 1em;
+}
+
+.resume h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5em;
+  text-align: center;
+}
+
+.resume a {
+  display: inline-block;
+  margin-top: 1em;
+  padding: 0.5em 1em;
+  background-color: var(--color-accent);
+  color: #00ffd9;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.resume a:hover {
+  opacity: 0.85;
+}
