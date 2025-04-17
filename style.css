@@ -31,7 +31,7 @@ nav a[aria-current="page"] {
 
 /* Accent color setup */
 :root {
-  --color-accent: rgb(255, 136, 0);
+  --color-accent: rgb(105, 39, 72);
 }
 
 html {
