@@ -4,7 +4,7 @@ function $$(selector, context=document) {
     return Array.from(context.querySelectorAll(selector));
 }
 
-const currentPath = location.pathname.split("/").pop() || "index.html";
+const currentPath = location.pathname;
 
 $$("nav a").forEach((a) => {
     if (a.getAttribute("href").endsWith(currentPath)) {
