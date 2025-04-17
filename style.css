@@ -10,7 +10,7 @@ body {
 nav {
   display: flex;
   justify-content: space-evenly;
-  border-bottom: 1px solid oklch(80% 3% 200);
+  border-bottom: 1px solid coral;
   margin-bottom: 1rem;
 }
 nav a {
@@ -31,7 +31,7 @@ nav a[aria-current="page"] {
 
 /* Accent color setup */
 :root {
-  --color-accent: rgb(105, 39, 72);
+  --color-accent: coral;
 }
 
 html {
