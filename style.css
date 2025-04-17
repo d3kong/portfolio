@@ -41,8 +41,8 @@ nav a[aria-current="page"] {
 
 [data-theme="dark"] {
   --color-bg: #121212;
-  --color-text: #e0e0e0;
-  --color-accent: hotpink;
+  --color-text: hotpink;
+  --color-accent: rgb(46, 185, 46);
 }
 
 html {
