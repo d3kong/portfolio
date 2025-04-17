@@ -7,7 +7,7 @@ function $$(selector, context=document) {
 const currentPath = location.pathname.split("/").pop() || "index.html";
 
 $$("nav a").forEach((a) => {
-    if (a.getAttrirbute("href").endsWith(currentPath)) {
+    if (a.getAttribute("href").endsWith(currentPath)) {
         a.setAttribute("aria-current", "page");
     }
 })
