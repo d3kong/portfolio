@@ -77,10 +77,10 @@ form input, form textarea, form button {
 }
 
 .projects article {
-  background-color: #ffffff;
+  background-color: var(--color-bg);
   padding: 1em;
   border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.0);
+  box-shadow: 0 2px 6px var(--color-bg);
   text-align: center;
 }
 
@@ -114,7 +114,7 @@ form input, form textarea, form button {
   margin-top: 1em;
   padding: 0.5em 1em;
   background-color: var(--color-accent);
-  color: #ffffff;
+  color: var(--color-bg);
   text-decoration: none;
   border-radius: 5px;
 }
