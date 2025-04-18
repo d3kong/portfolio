@@ -19,22 +19,16 @@
     </nav>
     <h1>Contact me at:</h1>
     <form action="mailto:ddekong@gmail.com" method="POST" enctype="text/plain">
-        <label>
-            Your Email:
-            <input type="email" name="email" required>
-        </label>
+        <label for="email">Your Email:</label>
+        <input id="email" name="email" type="email" requried>
         <br><br>
 
-        <label>
-            Subject:
-            <input name="subject" required>
-        </label>
+        <label for="subject">Subject:</label>
+        <input id="subject" name="subject" required>
         <br><br>
 
-        <label>
-            <Message>:
-            <textarea name="body" rows="6" cols="30" required></textarea>
-        </label>
+        <label for="body">Message:</label>
+        <textarea id="body" name="body" rows="6" required></textarea>
         <br><br>
 
         <button>Send</button>
