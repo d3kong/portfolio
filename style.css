@@ -2,7 +2,7 @@
 :root {
   --color-accent: coral;
   --color-bg: white;
-  --color-text: cadetblue;
+  --color-text: rgb(75, 123, 124);
 }
 
 [data-theme="dark"] {
