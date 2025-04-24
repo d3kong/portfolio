@@ -15,7 +15,7 @@ export async function fetchJSON(url) {
     }
   }
 
-function $$(selector, context=document) {
+export function $$(selector, context=document) {
     return Array.from(context.querySelectorAll(selector));
 }
 
