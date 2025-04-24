@@ -21,7 +21,7 @@ async function loadAndRenderProjects() {
             renderProjects(projects, container);
             const title = document.querySelector(".page-title");
             if (title) {
-                title.textContent = `${projects.lenght} Projects`;
+                title.textContent = `${projects.length} Projects`;
             }
         }
     } catch (error) {
