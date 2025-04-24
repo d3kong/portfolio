@@ -121,7 +121,7 @@ form button:hover {
 }
 
 .github-cards .card {
-  background-color: var(--color-bg-alt, #f5f5f5);
+  background-color: var(--color-bg);
   border-radius: 10px;
   padding: 1rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
