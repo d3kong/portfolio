@@ -9,7 +9,7 @@ function renderProjects(projects, container, headingLevel = 'h2') {
             <img src="${project.image}" alt="Screenshot of ${project.title}">
             <p>${project.description}</p>
         `;
-        container.appendChile(article);
+        container.appendChild(article);
     });
 }
 
@@ -21,7 +21,7 @@ async function loadAndRenderProjects() {
             renderProjects(projects, container);
             const title = document.querySelector(".page-title");
             if (title) {
-                title.textContent = `${projects.lenght} Projects`
+                title.textContent = `${projects.lenght} Projects`;
             }
         }
     } catch (error) {
