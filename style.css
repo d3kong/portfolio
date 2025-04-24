@@ -112,6 +112,41 @@ form button:hover {
   font-size: 1.2rem;
 }
 
+.github-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding: 1rem 0;
+}
+
+.github-cards .card {
+  background-color: var(--color-bg-alt, #f5f5f5);
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.github-cards .card:hover {
+  transform: translateY(-4px);
+}
+
+.github-cards dt {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  margin-bottom: 0.5rem;
+}
+
+.github-cards dd {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0;
+  color: var(--color-text);
+}
+
 .resume {
   max-width: 60ch;
   margin: 2em auto;

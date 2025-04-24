@@ -21,11 +21,25 @@ async function loadGitHubStats() {
   
       if (profileStats) {
             profileStats.innerHTML = `
-                <dl>
-                    <dt>Public Repositories:</dt><dd>${githubData.public_repos}</dd>
-                    <dt>Followers:</dt><dd>${githubData.followers}</dd>
-                    <dt>Following:</dt><dd>${githubData.following}</dd>
+                <dl class="github-cards">
+                    <div class="card">
+                        <dt>Followers</dt>
+                        <dd>${githubData.followers}</dd>
+                    </div>
+                    <div class="card">
+                        <dt>Following</dt>
+                        <dd>${githubData.following}</dd>
+                    </div>
+                    <div class="card">
+                        <dt>Public Repos</dt>
+                        <dd>${githubData.public_repos}</dd>
+                    </div>
+                    <div class="card">
+                        <dt>Public Gists</dt>
+                        <dd>${githubData.public_gists}</dd>
+                    </div>
                 </dl>
+
             `;
       }
     } catch (error) {
