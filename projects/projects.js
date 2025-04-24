@@ -1,17 +1,4 @@
-import { fetchJSON, $$ } from "/portfolio/global.js";
-
-function renderProjects(projects, container, headingLevel = 'h2') {
-    container.innerHTML = "";
-    projects.forEach(project => {
-        const article = document.createElement("article");
-        article.innerHTML = `
-            <${headingLevel}>${project.title}</${headingLevel}>
-            <img src="${project.image}" alt="Screenshot of ${project.title}">
-            <p>${project.description}</p>
-        `;
-        container.appendChild(article);
-    });
-}
+import { fetchJSON, $$, renderProjects } from "/portfolio/global.js";
 
 async function loadAndRenderProjects() {
     try {

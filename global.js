@@ -19,6 +19,19 @@ export function $$(selector, context=document) {
     return Array.from(context.querySelectorAll(selector));
 }
 
+export function renderProjects(projects, container, headingLevel = 'h2') {
+    container.innerHTML = "";
+    projects.forEach(project => {
+        const article = document.createElement("article");
+        article.innerHTML = `
+            <${headingLevel}>${project.title}</${headingLevel}>
+            <img src="${project.image}" alt="Screenshot of ${project.title}">
+            <p>${project.description}</p>
+        `;
+        container.appendChild(article);
+    });
+}
+
 const currentPath = location.pathname;
 
 $$("nav a").forEach((a) => {
