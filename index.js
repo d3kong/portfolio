@@ -39,7 +39,6 @@ async function loadGitHubStats() {
                         <dd>${githubData.public_gists}</dd>
                     </div>
                 </dl>
-
             `;
       }
     } catch (error) {

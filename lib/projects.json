@@ -1,31 +1,73 @@
 [
     {
+        "title": "DSC 106 Final Project",
+        "year": "2023",
+        "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam dolor quos, quod assumenda explicabo odio, nobis ipsa laudantium quas eum veritatis ullam sint porro minima modi molestias doloribus cumque odit."
+    },
+    {
         "title": "Project 1",
+        "year": "2024",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, maiores sapiente? Mollitia ullam, cum excepturi quia voluptatibus officiis placeat omnis sed libero a reiciendis distinctio voluptas quae et blanditiis unde."
     },
     {
         "title": "Project 2",
+        "year": "2022",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, maiores sapiente? Mollitia ullam, cum excepturi quia voluptatibus officiis placeat omnis sed libero a reiciendis distinctio voluptas quae et blanditiis unde."
     },
     {
         "title": "Project 3",
+        "year": "2023",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, maiores sapiente? Mollitia ullam, cum excepturi quia voluptatibus officiis placeat omnis sed libero a reiciendis distinctio voluptas quae et blanditiis unde."
     },
     {
         "title": "Project 4",
+        "year": "2025",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, maiores sapiente? Mollitia ullam, cum excepturi quia voluptatibus officiis placeat omnis sed libero a reiciendis distinctio voluptas quae et blanditiis unde."
     },
     {
         "title": "Project 5",
+        "year": "2024",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, maiores sapiente? Mollitia ullam, cum excepturi quia voluptatibus officiis placeat omnis sed libero a reiciendis distinctio voluptas quae et blanditiis unde."
     },
     {
         "title": "Project 6",
+        "year": "2023",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, maiores sapiente? Mollitia ullam, cum excepturi quia voluptatibus officiis placeat omnis sed libero a reiciendis distinctio voluptas quae et blanditiis unde."
+    },
+    {
+        "title": "Project 7",
+        "year": "2024",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, maiores sapiente? Mollitia ullam, cum excepturi quia voluptatibus officiis placeat omnis sed libero a reiciendis distinctio voluptas quae et blanditiis unde."
+    },
+    {
+        "title": "Project 8",
+        "year": "2025",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, maiores sapiente? Mollitia ullam, cum excepturi quia voluptatibus officiis placeat omnis sed libero a reiciendis distinctio voluptas quae et blanditiis unde."
+    },
+    {
+        "title": "Project 9",
+        "year": "2023",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, maiores sapiente? Mollitia ullam, cum excepturi quia voluptatibus officiis placeat omnis sed libero a reiciendis distinctio voluptas quae et blanditiis unde."
+    },
+    {
+        "title": "Project 10",
+        "year": "2025",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, maiores sapiente? Mollitia ullam, cum excepturi quia voluptatibus officiis placeat omnis sed libero a reiciendis distinctio voluptas quae et blanditiis unde."
+    },
+    {
+        "title": "Project 11",
+        "year": "2024",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, maiores sapiente? Mollitia ullam, cum excepturi quia voluptatibus officiis placeat omnis sed libero a reiciendis distinctio voluptas quae et blanditiis unde."
     }
