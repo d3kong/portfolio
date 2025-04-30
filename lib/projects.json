@@ -12,10 +12,11 @@
         "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, maiores sapiente? Mollitia ullam, cum excepturi quia voluptatibus officiis placeat omnis sed libero a reiciendis distinctio voluptas quae et blanditiis unde."
     },
     {
-        "title": "Project 2",
-        "year": "2022",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, maiores sapiente? Mollitia ullam, cum excepturi quia voluptatibus officiis placeat omnis sed libero a reiciendis distinctio voluptas quae et blanditiis unde."
+        "title": "Project 2: Persuasive Visualization",
+        "year": "2025",
+        "image": "/portfolio/project2/for_visualization.png",
+        "description": "A persuasive and deceptive visualization project exploring the ethics of data storytelling.",
+        "link": "/portfolio/project2/project2_report.html"
     },
     {
         "title": "Project 3",

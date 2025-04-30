@@ -23,18 +23,30 @@ export function $$(selector, context=document) {
     return Array.from(context.querySelectorAll(selector));
 }
 
-export function renderProjects(projects, container, headingLevel = 'h2') {
+export function renderProjects(projects, container, headingLevel = "h2") {
     container.innerHTML = "";
     projects.forEach(project => {
-        const article = document.createElement("article");
+      const article = document.createElement("article");
+  
+      if (project.link) {
         article.innerHTML = `
+          <a href="${project.link}">
             <${headingLevel}>${project.title}</${headingLevel}>
             <img src="${project.image}" alt="Screenshot of ${project.title}">
             <p>${project.description}</p>
+          </a>
         `;
-        container.appendChild(article);
+      } else {
+        article.innerHTML = `
+          <${headingLevel}>${project.title}</${headingLevel}>
+          <img src="${project.image}" alt="Screenshot of ${project.title}">
+          <p>${project.description}</p>
+        `;
+      }
+  
+      container.appendChild(article);
     });
-}
+  }
 
 const currentPath = location.pathname;
 
