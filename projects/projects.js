@@ -39,27 +39,3 @@ async function loadAndRenderProjects() {
   }
 
 loadAndRenderProjects();
-
-import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7/+esm';
-
-// Process project data to count projects by year
-const yearCounts = {};
-projects.forEach(p => {
-  yearCounts[p.year] = (yearCounts[p.year] || 0) + 1;
-});
-
-const data = Object.entries(yearCounts).map(([label, value]) => ({ label, value }));
-
-// Generate pie chart
-const pie = d3.pie().value(d => d.value);
-const arc = d3.arc().innerRadius(0).outerRadius(50);
-const arcs = pie(data);
-
-const svg = d3.select("#projects-plot");
-const color = d3.scaleOrdinal(d3.schemeTableau10);
-
-arcs.forEach((d, i) => {
-  svg.append("path")
-    .attr("d", arc(d))
-    .attr("fill", color(i));
-});
