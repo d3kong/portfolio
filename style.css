@@ -181,3 +181,9 @@ form button:hover {
 .resume a:hover {
   opacity: 0.85;
 }
+
+#projects-plot {
+  max-width: 20em;
+  margin-block: 2em;
+  overflow: visible;
+}
