@@ -28,8 +28,13 @@ export function renderProjects(projects, container) {
 
   projects.forEach(project => {
     const article = document.createElement("article");
+
+    const titleHTML = project.link
+      ? `<h2><a href="${project.link}">${project.title}</a></h2>`
+      : `<h2>${project.title}</h2>`;
+
     article.innerHTML = `
-      <h2>${project.title}</h2>
+      ${titleHTML}
       <img src="${project.image}" alt="Screenshot of ${project.title}" />
       <p>${project.description}</p>
       <div class="project-year">${project.year}</div>
