@@ -6,21 +6,37 @@ async function loadAndRenderProjects() {
   
         const container = document.querySelector(".projects");
         if (projects && container) {
-            console.log("Fetched projects:", projects);
             renderProjects(projects, container);
-    
+  
             const title = document.querySelector(".page-title");
-    
-            if (title && Array.isArray(projects)) {
-                title.textContent = `${projects.length} Projects`;
-            } else if (title) {
-                title.textContent = `Projects`;
-            }
+            title.textContent = `${projects.length} Projects`;
+  
+            // ✅ D3 PIE CHART CODE STARTS HERE
+            const yearCounts = {};
+            projects.forEach(p => {
+              yearCounts[p.year] = (yearCounts[p.year] || 0) + 1;
+            });
+  
+            const data = Object.entries(yearCounts).map(([label, value]) => ({ label, value }));
+            const pie = d3.pie().value(d => d.value);
+            const arc = d3.arc().innerRadius(0).outerRadius(50);
+            const arcs = pie(data);
+  
+            const svg = d3.select("#projects-plot");  // Correct ID is #projects-plot
+            const color = d3.scaleOrdinal(d3.schemeTableau10);
+  
+            arcs.forEach((d, i) => {
+              svg.append("path")
+                .attr("d", arc(d))
+                .attr("fill", color(i));
+            });
+            // ✅ D3 PIE CHART CODE ENDS HERE
         }
+  
     } catch (error) {
         console.error("Error loading projects: ", error);
     }
-}  
+  }
 
 loadAndRenderProjects();
 
