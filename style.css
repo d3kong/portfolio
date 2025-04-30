@@ -147,6 +147,13 @@ form button:hover {
   color: var(--color-text);
 }
 
+.project-year {
+  font-family: Baskerville, serif;
+  font-size: 0.8em;
+  color: gray;
+  font-variant-numeric: oldstyle-nums;
+}
+
 .resume {
   max-width: 60ch;
   margin: 2em auto;
