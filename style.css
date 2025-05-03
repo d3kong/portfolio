@@ -216,3 +216,17 @@ form button:hover {
   gap: 1em;
   justify-content: center;
 }
+
+svg:has(path:hover) path:not(:hover) {
+  opacity: 0.5;
+}
+
+path {
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+path.selected {
+  stroke: black;
+  stroke-width: 2px;
+}

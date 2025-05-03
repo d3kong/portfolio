@@ -3,6 +3,8 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
 let allProjects = [];
 let container;
+let selectedIndex = -1;
+let searchQuery = "";
 
 async function loadAndRenderProjects() {
   try {
@@ -54,7 +56,12 @@ function updatePieAndLegend(projectSubset) {
   arcs.forEach((d, i) => {
     svg.append("path")
       .attr("d", arc(d))
-      .attr("fill", color(i));
+      .attr("fill", color(i))
+      .attr("class", i === selectedIndex ? "selected" : "") // Highlight selected
+      .on("click", () => {
+        selectedIndex = selectedIndex === i ? -1 : i;
+        applyCombinedFilters();
+      });
   });
 
   data.forEach((d, idx) => {
@@ -64,17 +71,34 @@ function updatePieAndLegend(projectSubset) {
   });
 }
 
-const searchInput = document.querySelector(".search");
+function applyCombinedFilters() {
+  let filtered = allProjects;
 
-searchInput.addEventListener("input", () => {
-  const query = searchInput.value.toLowerCase();
+  if (searchQuery) {
+    filtered = filtered.filter(p =>
+      [p.title, p.description, p.year].some(field =>
+        field.toLowerCase().includes(searchQuery)
+      )
+    );
+  }
 
-  const filtered = allProjects.filter(p =>
-    [p.title, p.description, p.year].some(field =>
-      field.toLowerCase().includes(query)
-    )
-  );
+  if (selectedIndex !== -1) {
+    const rolledData = d3.rollups(
+      allProjects,
+      v => v.length,
+      d => d.year
+    );
+    const selectedYear = rolledData[selectedIndex][0];
+    filtered = filtered.filter(p => p.year === selectedYear);
+  }
 
   renderProjects(filtered, container);
   updatePieAndLegend(filtered);
+}
+
+const searchInput = document.querySelector(".search");
+
+searchInput.addEventListener("input", () => {
+  searchQuery = searchInput.value.toLowerCase();
+  applyCombinedFilters();
 });
