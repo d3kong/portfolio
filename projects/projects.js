@@ -3,6 +3,7 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
 let allProjects = [];
 let container;
+let selectedYear = null;
 let selectedIndex = -1;
 let searchQuery = "";
 
@@ -57,9 +58,10 @@ function updatePieAndLegend(projectSubset) {
     svg.append("path")
       .attr("d", arc(d))
       .attr("fill", color(i))
-      .attr("class", i === selectedIndex ? "selected" : "") // Highlight selected
+      .attr("class", data[i].label === selectedYear ? "selected" : "")
       .on("click", () => {
-        selectedIndex = selectedIndex === i ? -1 : i;
+        const clickedYear = data[i].label;
+        selectedYear = selectedYear === clickedYear ? null : clickedYear;
         applyCombinedFilters();
       });
   });
@@ -82,13 +84,7 @@ function applyCombinedFilters() {
     );
   }
 
-  if (selectedIndex !== -1) {
-    const rolledData = d3.rollups(
-      allProjects,
-      v => v.length,
-      d => d.year
-    );
-    const selectedYear = rolledData[selectedIndex][0];
+  if (selectedYear !== null) {
     filtered = filtered.filter(p => p.year === selectedYear);
   }
 
