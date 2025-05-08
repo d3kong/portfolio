@@ -47,6 +47,14 @@ async function loadData() {
         .attr("width", width)
         .attr("height", height);
 
+    const gridlines = svg
+        .append('g')
+        .attr('class', 'gridlines')
+        .attr('transform', `translate(${usableArea.left}, 0)`);
+
+// Create gridlines as an axis with no labels and full-width ticks
+gridlines.call(d3.axisLeft(yScale).tickFormat('').tickSize(-usableArea.width));
+
     const x = d3.scaleTime()
         .domain(d3.extent(commits, d => d.datetime))
         .range([margin.left, width - margin.right]);
