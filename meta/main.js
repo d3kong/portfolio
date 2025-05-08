@@ -3,7 +3,8 @@ console.log("Script loaded!");
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
 async function loadData() {
-    const data = await d3.csv("loc.csv", (row) => ({
+    const prefix = location.hostname === "localhost" ? "" : "/portfolio";
+    const data = await d3.csv(`${prefix}/meta/loc.csv`, (row) => ({
         ...row,
         line: +row.line,
         depth: +row.depth,
