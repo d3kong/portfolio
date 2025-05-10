@@ -47,13 +47,16 @@ async function loadData() {
         .attr("width", width)
         .attr("height", height);
 
-    const gridlines = svg
-        .append('g')
-        .attr('class', 'gridlines')
-        .attr('transform', `translate(${usableArea.left}, 0)`);
+    const tooltip = d3.select("#tooltip");
 
-// Create gridlines as an axis with no labels and full-width ticks
-gridlines.call(d3.axisLeft(yScale).tickFormat('').tickSize(-usableArea.width));
+    const yAxisGrid = d3.axisLeft(y)
+    .tickSize(-width + margin.left + margin.right)
+    .tickFormat("");
+  
+    svg.append("g")
+        .attr("class", "grid")
+        .attr("transform", `translate(${margin.left}, 0)`)
+        .call(yAxisGrid);
 
     const x = d3.scaleTime()
         .domain(d3.extent(commits, d => d.datetime))
@@ -78,7 +81,20 @@ gridlines.call(d3.axisLeft(yScale).tickFormat('').tickSize(-usableArea.width));
         .attr("cx", d => x(d.datetime))
         .attr("cy", d => y(d.lines))
         .attr("r", 4)
-        .attr("fill", "steelblue");
+        .attr("fill", "steelblue")
+        .on("mouseover", (event, d) => {
+          tooltip
+            .style("visibility", "visible")
+            .html(`Commit: ${d.commit}<br>Lines: ${d.lines}`);
+        })
+        .on("mousemove", (event) => {
+          tooltip
+            .style("top", (event.pageY + 10) + "px")
+            .style("left", (event.pageX + 10) + "px");
+        })
+        .on("mouseout", () => {
+          tooltip.style("visibility", "hidden");
+        });
 
     return data;
 }
