@@ -48,10 +48,6 @@ async function loadData() {
         .attr("height", height);
 
     const tooltip = d3.select("#tooltip");
-
-    const yAxisGrid = d3.axisLeft(y)
-    .tickSize(-width + margin.left + margin.right)
-    .tickFormat("");
   
     svg.append("g")
         .attr("class", "grid")
@@ -65,6 +61,10 @@ async function loadData() {
     const y = d3.scaleLinear()
         .domain([0, d3.max(commits, d => d.lines)])
         .range([height - margin.bottom, margin.top]);
+
+    const yAxisGrid = d3.axisLeft(y)
+        .tickSize(-width + margin.left + margin.right)
+        .tickFormat("");
 
     svg.append("g")
         .attr("transform", `translate(0,${height - margin.bottom})`)
