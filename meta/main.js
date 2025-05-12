@@ -96,6 +96,33 @@ async function loadData() {
           tooltip.style("visibility", "hidden");
         });
 
+    const brush = d3.brush()
+        .extent([[margin.left, margin.top], [width - margin.right, height - margin.bottom]])
+        .on("brush end", brushed);
+
+    svg.append("g")
+        .attr("class", "brush")
+        .call(brush);
+
+    function brushed(event) {
+        const selection = event.selection;
+        if (!selection) return;
+
+        const [[x0, y0], [x1, y1]] = selection;
+
+        svg.selectAll("circle")
+            .attr("stroke", d => {
+            const cx = x(d.datetime);
+            const cy = y(d.lines);
+            return x0 <= cx && cx <= x1 && y0 <= cy && cy <= y1 ? "black" : null;
+            })
+            .attr("stroke-width", d => {
+            const cx = x(d.datetime);
+            const cy = y(d.lines);
+            return x0 <= cx && cx <= x1 && y0 <= cy && cy <= y1 ? 2 : null;
+            });
+    }
+
     return data;
 }
 
