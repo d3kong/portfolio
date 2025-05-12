@@ -74,7 +74,7 @@ async function loadData() {
         .attr("transform", `translate(${margin.left},0)`)
         .call(d3.axisLeft(y));
 
-    svg.append("g")
+    const circles = svg.append("g")
         .selectAll("circle")
         .data(commits)
         .join("circle")
@@ -83,17 +83,17 @@ async function loadData() {
         .attr("r", 4)
         .attr("fill", "steelblue")
         .on("mouseover", (event, d) => {
-          tooltip
+            tooltip
             .style("visibility", "visible")
             .html(`Commit: ${d.commit}<br>Lines: ${d.lines}`);
         })
         .on("mousemove", (event) => {
-          tooltip
+            tooltip
             .style("top", (event.pageY + 10) + "px")
             .style("left", (event.pageX + 10) + "px");
         })
         .on("mouseout", () => {
-          tooltip.style("visibility", "hidden");
+            tooltip.style("visibility", "hidden");
         });
 
     const brush = d3.brush()
@@ -110,7 +110,7 @@ async function loadData() {
 
         const [[x0, y0], [x1, y1]] = selection;
 
-        svg.selectAll("circle")
+        circles
             .attr("stroke", d => {
             const cx = x(d.datetime);
             const cy = y(d.lines);
@@ -121,7 +121,7 @@ async function loadData() {
             const cy = y(d.lines);
             return x0 <= cx && cx <= x1 && y0 <= cy && cy <= y1 ? 2 : null;
             });
-    }
+    }   
 
     return data;
 }
