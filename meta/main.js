@@ -48,11 +48,6 @@ async function loadData() {
         .attr("height", height);
 
     const tooltip = d3.select("#tooltip");
-  
-    svg.append("g")
-        .attr("class", "grid")
-        .attr("transform", `translate(${margin.left}, 0)`)
-        .call(yAxisGrid);
 
     const x = d3.scaleTime()
         .domain(d3.extent(commits, d => d.datetime))
@@ -65,6 +60,11 @@ async function loadData() {
     const yAxisGrid = d3.axisLeft(y)
         .tickSize(-width + margin.left + margin.right)
         .tickFormat("");
+
+    svg.append("g")
+        .attr("class", "grid")
+        .attr("transform", `translate(${margin.left}, 0)`)
+        .call(yAxisGrid);
 
     svg.append("g")
         .attr("transform", `translate(0,${height - margin.bottom})`)
