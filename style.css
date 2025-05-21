@@ -240,3 +240,52 @@ path.selected {
 .grid path {
   stroke: none;
 }
+
+.files {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 1em;
+}
+
+.files > div {
+  display: contents;
+}
+
+.files dt {
+  grid-column: 1;
+}
+
+.files dd {
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  gap: 0.15em;
+  padding-top: 0.6em;
+  margin-left: 0;
+}
+
+.line {
+  width: 0.5em;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+.scrolly {
+  max-width: 50ch;
+  margin: 2em auto;
+  display: flex;
+  flex-direction: column;
+  gap: 50vh;
+  scroll-margin-top: 20vh;
+  scroll-snap-type: y proximity;
+}
+
+.scrolly section {
+  scroll-snap-align: start;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+}

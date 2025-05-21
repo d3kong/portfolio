@@ -21,9 +21,32 @@
   </nav>
 
   <h1>Meta Stats</h1>
+  <div id="time-filter">
+    <label>
+      Show commits until:
+      <input type="range" id="timeSlider" min="0" max="100" value="100" />
+      <time id="selectedTime"></time>
+    </label>
+  </div>
   <div id="stats"></div>
+  <dl class="files"></dl>
   <div id="tooltip" style="position: absolute; visibility: hidden; padding: 6px; background: #eee; border: 1px solid #ccc; font-size: 0.9rem; border-radius: 4px;"></div>
 
   <script type="module" src="main.js"></script>
+
+  <main class="scrolly">
+    <section>
+      <p>Let’s explore how the portfolio has evolved over time.</p>
+    </section>
+    <section>
+      <p>This dot represents the biggest commit — over 100 lines were added at once!</p>
+    </section>
+    <section>
+      <p>And this file has grown steadily, line by line, into your largest file.</p>
+    </section>
+    <section>
+      <p>Consistent contributions were made throughout the quarter.</p>
+    </section>
+  </main>
 </body>
 </html>
