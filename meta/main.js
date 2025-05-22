@@ -154,6 +154,16 @@ async function loadData() {
 
   const fileTypeColors = d3.scaleOrdinal(d3.schemeTableau10);
 
+  const techs = Array.from(new Set(data.map(d => d.tech))).filter(Boolean);
+
+    const legend = d3.select(".legend");
+
+    legend.selectAll("li")
+    .data(techs)
+    .enter()
+    .append("li")
+    .html(d => `<span class="swatch" style="background:${fileTypeColors(d)}"></span>${d}`);
+
   const brush = d3.brush()
     .extent([[margin.left, margin.top], [width - margin.right, height - margin.bottom]])
     .on("brush end", brushed);
@@ -186,6 +196,11 @@ async function loadData() {
   updateTimeDisplay();
 
   function highlightStep(i) {
+    if (i === 0) {
+        svg.selectAll("circle")
+            .attr("fill", "lightgray")
+            .attr("r", 2);
+    }
     if (i === 1) {
         const biggest = d3.max(commits, d => d.lines);
         svg.selectAll("circle")
@@ -198,7 +213,32 @@ async function loadData() {
         svg.selectAll("circle")
             .attr("fill", d => d.file === topFile ? "gold" : "lightgray")
             .attr("r", d => d.file === topFile ? 6 : 2);
-    } else {
+    } else if (i === 3) {
+        svg.selectAll("circle")
+            .attr("fill", "steelblue")
+            .transition()
+            .duration(1000)
+            .attr("r", 6)
+            .transition()
+            .duration(500)
+            .attr("r", 4);
+    } else if (i === 4) {
+        const jsCommits = new Set(
+            data.filter(d => d.file.endsWith(".js")).map(d => d.commit)
+        );
+
+        svg.selectAll("circle")
+            .attr("fill", d => jsCommits.has(d.commit) ? "purple" : "lightgray")
+            .attr("r", d => jsCommits.has(d.commit) ? 5 : 2);
+    } else if (i === 5) {
+        const start = new Date("2024-02-19");
+        const end = new Date("2024-02-25");
+
+        svg.selectAll("circle")
+            .attr("fill", d => d.datetime >= start && d.datetime <= end ? "orange" : "lightgray")
+            .attr("r", d => d.datetime >= start && d.datetime <= end ? 6 : 2);
+    }
+    else {
         svg.selectAll("circle")
             .attr("fill", "steelblue")
             .attr("r", 4);
