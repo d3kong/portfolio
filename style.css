@@ -271,25 +271,6 @@ path.selected {
   border-radius: 50%;
 }
 
-.scrolly {
-  max-width: 50ch;
-  margin: 2em auto;
-  display: flex;
-  flex-direction: column;
-  gap: 50vh;
-  scroll-margin-top: 20vh;
-  scroll-snap-type: y proximity;
-}
-
-.scrolly section {
-  scroll-snap-align: start;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  font-size: 1.2rem;
-  font-weight: 500;
-}
-
 .legend {
   position: sticky;
   top: 1rem;
@@ -319,3 +300,43 @@ path.selected {
   height: 1em;
   border-radius: 50%;
 }
+
+body.meta {
+  max-width: min(120ch, 80vw);
+}
+
+#scrollytelling-commits,
+#scrollytelling-files {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin: 2rem auto;
+}
+
+#scroll-container-commits,
+#scroll-container-files {
+  position: relative;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+#spacer-commits,
+#spacer-files {
+  height: 100vh;
+}
+
+#items-container-commits,
+#items-container-files {
+  position: sticky;
+  top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 50vh;
+}
+
+circle {
+  @starting-style {
+    r: 0;
+  }
+}
+
