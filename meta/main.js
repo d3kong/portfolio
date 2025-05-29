@@ -46,8 +46,7 @@ async function loadData() {
   const height = 400;
   const margin = { top: 20, right: 20, bottom: 30, left: 40 };
 
-  const svg = d3.select("body")
-    .append("svg")
+  const svg = d3.select("#chart-evolution svg")
     .attr("width", width)
     .attr("height", height);
 
