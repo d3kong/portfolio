@@ -4,14 +4,16 @@
   <meta charset="UTF-8" />
   <title>Meta – Animation &amp; Scrollytelling</title>
   <link rel="stylesheet" href="../style.css" />
+  <!-- Load main.js as a module so that import statements work -->
+  <script type="module" src="main.js"></script>
 </head>
 
 <body class="meta">
 
+  <!-- ===== STEP 1: Evolution Visualization (slider + scatter) ===== -->
   <section id="evolution">
     <label for="timeSlider">
-      Date:
-      <time id="selectedTime">–</time>
+      Date: <time id="selectedTime">–</time>
     </label>
     <input type="range" id="timeSlider" min="0" max="100" />
     <div id="chart-evolution">
@@ -19,41 +21,48 @@
     </div>
   </section>
 
+  <!-- ===== STEP 2: Race for the Biggest File (unit visualization) ===== -->
   <section id="files-race">
     <dl class="files"></dl>
     <ul class="legend"></ul>
   </section>
 
+  <!-- ===== STEP 3: Scrollytelling — Commits ===== -->
   <div id="scrollytelling-commits">
     <div id="scroll-container-commits">
       <div id="spacer-commits"></div>
       <div id="items-container-commits">
+        <!-- Each story-step will trigger highlight/update on scroll -->
         <div class="story-step" data-step="0">
           <p>
-            On January 10, 2025, I made
-            <a href="{commit.url}" target="_blank">my first commit</a>.
-            I added <strong>{commit.totalLines}</strong> lines across
-            <strong>{numFiles}</strong> files. It felt like a strong start.
+            On <strong>January 10, 2025</strong>, I made my first commit.
+            It contained <strong> {commitLines0} </strong> lines across
+            <strong> {numFiles0} </strong> files—my project’s opening moments.
           </p>
         </div>
         <div class="story-step" data-step="1">
           <p>
-            On February 2, 2025, I refactored the data-loading logic into
-            <code>data.js</code>, moving <strong>{movedLines}</strong> lines
-            out of <code>main.js</code> and cleaning up parsing.
+            By <strong>February 2, 2025</strong>, I refactored the data‐loading
+            logic into <code>data.js</code>—moving up to
+            <strong> {movedLines1} </strong> lines out of <code>main.js</code>.
           </p>
         </div>
         <div class="story-step" data-step="2">
           <p>
-            On March 15, 2025, I wired up the slider UI with
-            <code>d3.scaleTime</code>, inverting the slider’s percent to
-            a real timestamp.
+            On <strong>March 15, 2025</strong>, I wired up the slider UI
+            using <code>d3.scaleTime</code>, letting us filter by real dates.
           </p>
         </div>
         <div class="story-step" data-step="3">
           <p>
-            On April 1, 2025, I fixed the scatter-update bug by reusing the
-            existing axes in <code>updateScatterPlot</code>. Now it’s buttery smooth.
+            On <strong>April 1, 2025</strong>, I fixed a scatter‐update bug by
+            re‐using axes in <code>updateScatterPlot</code>. Now it’s buttery smooth.
+          </p>
+        </div>
+        <div class="story-step" data-step="4">
+          <p>
+            By <strong>May 10, 2025</strong>, my largest commit hit
+            <strong> {largestCommitLines} </strong> lines—this one stands out in crimson.
           </p>
         </div>
       </div>
@@ -63,31 +72,32 @@
     </div>
   </div>
 
+  <!-- ===== STEP 4: Scrollytelling — File Sizes ===== -->
   <div id="scrollytelling-files">
     <div id="scroll-container-files">
       <div id="spacer-files"></div>
       <div id="items-container-files">
         <div class="story-step" data-step="0">
           <p>
-            At the start, <code>README.md</code> was the smallest file—just a few lines.
+            Initially, <code>README.md</code> was tiny—just a handful of lines.
           </p>
         </div>
         <div class="story-step" data-step="1">
           <p>
-            Over time, <code>main.js</code> grew the most, topping
-            <strong>{largestFileLines}</strong> lines as I added interactions.
+            Over time, <code>main.js</code> ballooned to
+            <strong> {largestFileLines} </strong> lines as I added interactions.
           </p>
         </div>
         <div class="story-step" data-step="2">
           <p>
-            My CSS in <code>style.css</code> ballooned during styling tweaks,
-            but each line helped perfect the grid-and-subgrid layout.
+            My styling in <code>style.css</code> also grew—each new rule
+            helped perfect the grid-and-subgrid layout.
           </p>
         </div>
         <div class="story-step" data-step="3">
           <p>
-            Finally, the legend—colored by file type—lets viewers spot
-            where HTML, JS, and CSS each dominate at a glance.
+            Finally, the legend—colored by file type—lets us see where
+            HTML, JS, and CSS dominate at a glance.
           </p>
         </div>
       </div>
@@ -97,6 +107,5 @@
     </div>
   </div>
 
-  <script type="module" src="main.js"></script>
 </body>
 </html>
