@@ -7,6 +7,7 @@ let filteredCommits = [];
 const timeSlider = d3.select("#timeSlider").node();
 const selectedTime = d3.select("#selectedTime");
 
+// highlightStep(i) now drives both the slider + scatter update and the highlight logic
 function highlightStep(i) {
   if (sortedCommits && sortedCommits[i]) {
     const targetDate = sortedCommits[i].datetime;
@@ -15,6 +16,7 @@ function highlightStep(i) {
     updateTimeDisplay();
   }
 
+  // Apply additional per-step styling to circles
   if (i === 0) {
     svg.selectAll("circle")
       .attr("fill", "lightgray")
@@ -62,24 +64,28 @@ async function loadData() {
     datetime: new Date(row.datetime),
   }));
 
+  // Build commits array: one object per commit, with its date + total lines
   commits = d3.rollups(
     data,
     v => ({ datetime: v[0].datetime, lines: v.length }),
     d => d.commit
   ).map(([commit, info]) => ({ commit, ...info }));
 
+  // Sort by date (ascending) so that step i corresponds to the i-th commit chronologically
   commits.sort((a, b) => a.datetime - b.datetime);
-  sortedCommits = commits.slice(); 
+  sortedCommits = commits.slice();
 
+  // Dimensions for the scatter
   const width = 800,
         height = 400,
         margin = { top: 20, right: 20, bottom: 30, left: 40 };
 
+  // Select the existing <svg> under #chart-evolution
   svg = d3.select("#chart-evolution svg")
     .attr("width", width)
     .attr("height", height);
 
-  // Draw grid and axes
+  // Build X and Y scales for the scatter
   const x = d3.scaleTime()
     .domain(d3.extent(commits, d => d.datetime))
     .range([margin.left, width - margin.right]);
@@ -88,6 +94,7 @@ async function loadData() {
     .domain([0, d3.max(commits, d => d.lines)])
     .range([height - margin.bottom, margin.top]);
 
+  // Draw Y‐axis grid lines
   const yAxisGrid = d3.axisLeft(y)
     .tickSize(-width + margin.left + margin.right)
     .tickFormat("");
@@ -97,6 +104,7 @@ async function loadData() {
     .attr("transform", `translate(${margin.left},0)`)
     .call(yAxisGrid);
 
+  // Draw X and Y axes
   svg.append("g")
     .attr("class", "x-axis")
     .attr("transform", `translate(0,${height - margin.bottom})`)
@@ -107,6 +115,7 @@ async function loadData() {
     .attr("transform", `translate(${margin.left},0)`)
     .call(d3.axisLeft(y));
 
+  // timeScale maps commit datetime → [0..100] slider range
   timeScale = d3.scaleTime()
     .domain(d3.extent(commits, d => d.datetime))
     .range([0, 100]);
@@ -115,23 +124,25 @@ async function loadData() {
     return timeScale.invert(commitProgress);
   }
 
+  // Draw or update circles for filtered commits
   function updateScatterPlot(filtered) {
     const circles = svg.selectAll("circle").data(filtered, d => d.commit);
 
-    // EXIT old
+    // EXIT old circles
     circles.exit().remove();
 
-    // ENTER new
+    // ENTER new circles (start r=0, then transition to r=4)
     circles.enter()
       .append("circle")
       .attr("cx", d => x(d.datetime))
       .attr("cy", d => y(d.lines))
-      .attr("r", 0)                      
+      .attr("r", 0)
       .attr("fill", "steelblue")
-      .transition()                      
+      .transition()
       .duration(500)
       .attr("r", 4);
 
+    // UPDATE existing circles
     circles
       .attr("cx", d => x(d.datetime))
       .attr("cy", d => y(d.lines))
@@ -139,27 +150,35 @@ async function loadData() {
       .attr("r", 4);
   }
 
+  // Build the “unit visualization” under #files-race
   function renderFiles() {
     const cutoff = updateCommitMaxTime();
+    // Only keep data rows whose commit date ≤ cutoff
     const subset = data.filter(d => d.datetime <= cutoff);
 
+    // Group by file name, then count lines per file
     let files = d3.groups(subset, d => d.file)
       .map(([name, rows]) => ({ name, lines: rows }));
 
+    // Sort files descending by #lines
     files.sort((a, b) => b.lines.length - a.lines.length);
 
+    // Select the <dl class="files"> container, clear out any old content
     const filesContainer = d3.select(".files");
     filesContainer.selectAll("div").remove();
 
+    // One <div> per file
     const fileBlocks = filesContainer.selectAll("div")
       .data(files)
       .enter()
       .append("div");
 
+    // Inside each <div>, add <dt><code>filename</code></dt>
     fileBlocks.append("dt")
       .append("code")
       .text(d => d.name);
 
+    // Then add <dd> containing one <div class="line"> per line
     fileBlocks.append("dd")
       .selectAll("div")
       .data(d => d.lines)
@@ -168,8 +187,11 @@ async function loadData() {
       .style("background", d => fileTypeColors(d.tech));
   }
 
+  // Build a color scale for each tech (for .line squares)
   const fileTypeColors = d3.scaleOrdinal(d3.schemeTableau10);
   const techs = Array.from(new Set(data.map(d => d.tech))).filter(Boolean);
+
+  // Render the legend (<ul class="legend">) once
   const legend = d3.select(".legend");
   legend.selectAll("li")
     .data(techs)
@@ -177,6 +199,7 @@ async function loadData() {
     .append("li")
     .html(d => `<span class="swatch" style="background:${fileTypeColors(d)}"></span>${d}`);
 
+  // (Optional) Add brushing to the scatter—highlights any circles within a brushed region
   const brush = d3.brush()
     .extent([[margin.left, margin.top], [width - margin.right, height - margin.bottom]])
     .on("brush end", brushed);
@@ -201,6 +224,7 @@ async function loadData() {
       });
   }
 
+  // Called whenever slider or scroll changes; updates both scatter & files
   function updateTimeDisplay() {
     commitProgress = +timeSlider.value;
     const commitMaxTime = updateCommitMaxTime();
@@ -214,7 +238,7 @@ async function loadData() {
   // INITIAL DRAW:
   timeSlider.addEventListener("input", updateTimeDisplay);
   updateTimeDisplay();
-} // end of loadData()
+}
 
 let data;
 let observer;
@@ -222,16 +246,18 @@ let observer;
 loadData().then((raw) => {
   data = raw; // raw rows from CSV
 
+  // Observe each .story-step inside #items-container-commits
   observer = new IntersectionObserver((entries) => {
     for (const entry of entries) {
       if (entry.isIntersecting) {
-        // Determine index of this step among its siblings:
+        // Find index of this step among its siblings
         const i = Array.from(entry.target.parentNode.children).indexOf(entry.target);
         highlightStep(i);
       }
     }
   }, { threshold: 0.5 });
 
+  // Hook observer onto all .story-step DIVs
   d3.selectAll(".story-step").each(function() {
     observer.observe(this);
   });
